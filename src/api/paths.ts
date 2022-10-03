@@ -1,3 +1,3 @@
 export const PATHS = {
-  GET_IMAGES: '/photos?page=1&per_page=60',
+  GET_IMAGES: '/photos?&per_page=12',
 }

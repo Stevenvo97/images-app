@@ -1,8 +1,8 @@
 import styled from "styled-components";
+import { motion, useAnimation } from "framer-motion";
+
 
 export const StyledContainer = styled.div`
-  /* width: 100%;
-  padding: 16px; */
   @media (max-aspect-ratio: 1/1) {
     li {
       height: 30vh;
@@ -32,7 +32,7 @@ export const StyledContainer = styled.div`
   }
 `;
 
-export const StyledWrapGrid = styled.ul`
+export const StyledWrapGrid = styled(motion.ul)`
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
@@ -41,7 +41,7 @@ export const StyledWrapGrid = styled.ul`
   margin-block-end: 0;
   padding-inline-start: 0;
 `;
-export const StyledWrapImage = styled.li`
+export const StyledWrapImage = styled(motion.li)`
   height: 40vh;
   flex-grow: 1;
 
