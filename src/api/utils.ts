@@ -7,7 +7,7 @@ export const getApiPath = (
   params?: { [key: string]: string | number },
 ) => {
   const apiUrl = 'https://api.unsplash.com'
-  const client_id = '/?client_id=z9GWtTuwwaRWn5MoX1ADLj6d9yeCxANo8CbXnMhSnJ0'
+  const client_id = '&client_id=z9GWtTuwwaRWn5MoX1ADLj6d9yeCxANo8CbXnMhSnJ0'
   return (
     apiUrl + formatString(path, {params}) + client_id
   )
