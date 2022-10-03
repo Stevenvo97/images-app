@@ -16,7 +16,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useInView } from "react-intersection-observer";
 export type ImageProps = {
   image: Image;
+  onClick?: (image: Image) => void;
 };
+
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -26,7 +28,7 @@ const container = {
     },
   },
 };
-const ImageItem = ({ image }: ImageProps) => {
+const ImageItem = ({ image, onClick }: ImageProps) => {
   const controls = useAnimation();
   const [ref, inView] = useInView();
 
@@ -54,13 +56,19 @@ const ImageItem = ({ image }: ImageProps) => {
       initial="hidden"
       animate={controls}
       ref={ref}
+      onClick={() => {
+        onClick?.(image);
+      }}
     >
-      <StyledImage src={image?.urls.full} loading="lazy" />
+      <StyledImage src={image?.urls.small} loading="lazy" />
     </StyledWrapImage>
   );
 };
+export type Props = {
+  onSelect?: (image: Image) => void;
+};
 
-const ImagesPanel = () => {
+const ImagesPanel = ({ onSelect }: Props) => {
   const [images, setImages] = useState<Image[]>([]);
   const [page, setPage] = useState(1);
 
@@ -109,7 +117,9 @@ const ImagesPanel = () => {
         <StyledWrapGrid animate="show" variants={container}>
           {images &&
             images?.length &&
-            images?.map((image) => <ImageItem key={image.id} image={image} />)}
+            images?.map((image) => (
+              <ImageItem onClick={onSelect} key={image.id} image={image} />
+            ))}
         </StyledWrapGrid>
       </InfiniteScroll>
     </StyledContainer>
